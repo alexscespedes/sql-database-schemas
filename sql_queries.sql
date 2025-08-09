@@ -1,3 +1,5 @@
+USE ClinicManagementSqlDb;
+
 INSERT INTO Departments (Name, Location) 
 VALUES 
 ('Cardiology', 'Building A - Floor 2'),
