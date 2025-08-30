@@ -61,6 +61,7 @@ CREATE TABLE AuditLogs (
     Action NVARCHAR(100) NOT NULL,
     Entity NVARCHAR(50),
     EntityID INT,
+    Details NVARCHAR(500) NULL,
     Timestamp DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
