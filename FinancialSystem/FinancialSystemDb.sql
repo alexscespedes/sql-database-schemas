@@ -1,6 +1,8 @@
 CREATE DATABASE FinancialSystemDb;
 
--- USE FinancialSystemDb;
+-- DROP TABLE Clients
+
+USE FinancialSystemDb;
 
 -- 1. Clients (borrowers)
 
@@ -33,7 +35,7 @@ CREATE TABLE Loans (
     InterestRate DECIMAL(5,2) NOT NULL,
     TermMonths INT NOT NULL,
     StartDate DATE NOT NULL,
-    Status NVARCHAR(20) CHECK (Status IN ('Active', 'Closed', 'Overdue')) DEFAULT 'Active',
+    Status NVARCHAR(20) CHECK (Status IN ('Active', 'Closed', 'Overdue', 'Restructured')) DEFAULT 'Active',
     CreatedBy INT NOT NULL,
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (ClientID) REFERENCES Clients(ClientID),
@@ -89,8 +91,9 @@ ADD CONSTRAINT CK_Loans_Term CHECK (TermMonths >= 1);
 
 EXEC sp_rename 'dbo.Loans.TermsMonths', 'TermMonths', 'COLUMN';
 
+
 ALTER TABLE Loans
-ADD CONSTRAINT DF_Loan_Status DEFAULT 'Active' FOR Status;
+ADD CONSTRAINT CK_Loans_Status CHECK (Status IN ('Active', 'Overdue', 'Closed', 'Restructured'));
 
 -- 4.
 

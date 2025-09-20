@@ -1,3 +1,5 @@
+USE FinancialSystemDb;
+
 -- 1. List All Active Loans
 
 SELECT 
