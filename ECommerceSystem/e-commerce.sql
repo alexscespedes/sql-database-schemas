@@ -34,7 +34,7 @@ CREATE TABLE Products (
     Price DECIMAL(10, 2) NOT NULL,
     Stock INT NOT NULL CHECK (Stock >= 0),
     CategoryID INT,
-    FOREIGN KEY (ProductID) REFERENCES Categories(CategoryID)
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 );
 
 CREATE TABLE Orders (
